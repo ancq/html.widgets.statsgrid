@@ -324,6 +324,7 @@ class StatsGrid implements HtmlElementInterface {
 			$j = 0;
 			foreach ($this->values as $value) {
 				$table[$yCoord+$j][$xCoord+$i]['value'] = $value->getValue($dataRow);
+                $table[$yCoord+$j][$xCoord+$i]['data'] = json_encode($dataRow);
 				if ($this->valuesDisplayMode == self::VALUES_DISPLAY_HORIZONTAL) {
 					$i++;
 				} else {
@@ -580,6 +581,9 @@ class StatsGrid implements HtmlElementInterface {
 				if (isset($cell['class'])) {
 					echo " class='{$cell['class']}'";
 				}
+                if (isset($cell['data'])) {
+                    echo " data='{$cell['data']}'";
+                }
 				echo ">";
 				echo isset($cell["value"])?$cell["value"]:"";
 				echo "</td>";
